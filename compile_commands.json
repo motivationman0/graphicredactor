@@ -1,0 +1,26 @@
+[
+{
+  "directory": "F:/pomoika/graphicredactor/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/bruh.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\bruh.dir\\main.cpp.obj -c F:\\pomoika\\graphicredactor\\main.cpp",
+  "file": "F:/pomoika/graphicredactor/main.cpp",
+  "output": "CMakeFiles/bruh.dir/main.cpp.obj"
+},
+{
+  "directory": "F:/pomoika/graphicredactor/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/bruh.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\bruh.dir\\canvas.cpp.obj -c F:\\pomoika\\graphicredactor\\canvas.cpp",
+  "file": "F:/pomoika/graphicredactor/canvas.cpp",
+  "output": "CMakeFiles/bruh.dir/canvas.cpp.obj"
+},
+{
+  "directory": "F:/pomoika/graphicredactor/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/bruh.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\bruh.dir\\render.cpp.obj -c F:\\pomoika\\graphicredactor\\render.cpp",
+  "file": "F:/pomoika/graphicredactor/render.cpp",
+  "output": "CMakeFiles/bruh.dir/render.cpp.obj"
+},
+{
+  "directory": "F:/pomoika/graphicredactor/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/bruh.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\bruh.dir\\inputhandler.cpp.obj -c F:\\pomoika\\graphicredactor\\inputhandler.cpp",
+  "file": "F:/pomoika/graphicredactor/inputhandler.cpp",
+  "output": "CMakeFiles/bruh.dir/inputhandler.cpp.obj"
+}
+]
