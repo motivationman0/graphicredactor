@@ -2,11 +2,13 @@
 #include <optional>
 #include <SFML/Graphics.hpp>
 #include "canvas.h"
-
+#include <cmath>
+#include <algorithm>
 
 class InputHandler
 {
 private:
+    bool HasPrevious = false;
     bool MouseHeldDown = false;
     int lastX = 0;
     int lastY = 0;

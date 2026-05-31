@@ -19,7 +19,10 @@ add_executable(bruh WIN32 main.cpp
     render.h
     render.cpp
     inputhandler.h 
-    inputhandler.cpp)
+    inputhandler.cpp
+    tools.h
+    tools.cpp
+    )
 
 target_link_libraries(bruh PRIVATE SFML::Graphics SFML::Window SFML::System)
 # Копирование DLL рядом с exe (импортированные SHARED-цели дают путь через $<TARGET_FILE:...>)

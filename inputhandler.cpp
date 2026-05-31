@@ -1,52 +1,64 @@
 #include "inputhandler.h"
 
 
-InputHandler::InputHandler() : MouseHeldDown(false), NeedRender(false){
+void SetPixel(unsigned int px, unsigned int py, std::vector<uint8_t>& pixels, unsigned int width){
+    size_t index = (py * width + px) * 4;
+    pixels[index] = 100; 
+    pixels[index + 1] = 100;   
+    pixels[index + 2] = 100;  
+    pixels[index + 3] = 255;
 }
 
-void InputHandler::HandleInput(sf::RenderWindow& window, Canvas& canvas){
-    std::vector<uint8_t>& pixels = canvas.pixels;
+InputHandler::InputHandler() : MouseHeldDown(false), NeedRender(false), HasPrevious(false){
+}
+
+void InputHandler::HandleInput(sf::RenderWindow& window, Canvas& canvas)
+{
+    std::vector<uint8_t>& pixels = canvas.GetPixels();
     
 
-    if (const std::optional event = window.waitEvent()) {
-        if (const auto* mousePressed = event->getIf<sf::Event::MouseButtonPressed>()) {
-            if (mousePressed->button == sf::Mouse::Button::Left) {
+    if (const std::optional event = window.waitEvent()) 
+    {
+        if (const auto* mousePressed = event->getIf<sf::Event::MouseButtonPressed>()) 
+        {
+            if (mousePressed->button == sf::Mouse::Button::Left) 
+            {
                 MouseHeldDown = true;
 
             }
         }
-        if (const auto* mouseReleased = event->getIf<sf::Event::MouseButtonReleased>()) {
-            if (mouseReleased->button == sf::Mouse::Button::Left) {
+        if (const auto* mouseReleased = event->getIf<sf::Event::MouseButtonReleased>()) 
+        {
+            if (mouseReleased->button == sf::Mouse::Button::Left) 
+            {
                 MouseHeldDown = false;
+                HasPrevious = false;
             }
         }
-        if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>()) {
-            if (MouseHeldDown) {
+        if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>()) 
+        {
+            if (MouseHeldDown) 
+            {
                 int x = mouseMoved->position.x;
                 int y = mouseMoved->position.y;
-                if(x>200&&x<1199&&y>200&&y<1199){
-                    unsigned int px = x-200;
-                    unsigned int py = y-200;
-                    size_t index = (py * 1000 + px) * 4;
-                    pixels[index] = 100; 
-                    pixels[index + 1] = 100;   
-                    pixels[index + 2] = 100;  
-                    pixels[index + 3] = 255;
+                if(x>canvas.GetOffsetX()&&x<canvas.GetWidth()+canvas.GetOffsetX()&&y>canvas.GetOffsetY()&&y<canvas.GetHeight()+canvas.GetOffsetY())
+                {
+                    unsigned int px = x-canvas.GetOffsetX();
+                    unsigned int py = y-canvas.GetOffsetY();
+                    SetPixel(px, py, pixels, canvas.GetWidth());
+
                     NeedRender=true;
                 }
-
-
             }
         }
 
-
-        if (event->is<sf::Event::Closed>()) {
+        if (event->is<sf::Event::Closed>()) 
+        {
             window.close();
         }
 
-
-
-        if (const auto* resized = event->getIf<sf::Event::Resized>()) {
+        if (const auto* resized = event->getIf<sf::Event::Resized>()) 
+        {
 
             sf::View view;
             view.setSize(sf::Vector2f(resized->size));
@@ -55,8 +67,10 @@ void InputHandler::HandleInput(sf::RenderWindow& window, Canvas& canvas){
             NeedRender = true;
         }
 
-        if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-            if (keyPressed->code == sf::Keyboard::Key::Escape) {
+        if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) 
+        {
+            if (keyPressed->code == sf::Keyboard::Key::Escape) 
+            {
                 window.close();
             }
         }
